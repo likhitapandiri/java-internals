@@ -1,23 +1,18 @@
 public class Main{
-    int ageNonStatic = 20;
-    static int ageStatic=20;
-
-    System.out.println(ageStatic);
-
 
     public static void main(String[] args){
-        System.out.println("Hello");
-        int age=22;
-        String name="Likhita";
-        char gender='F';
-        boolean student = false;
-        double ageDouble= age * 2;
-        System.out.println(age);
-        System.out.println(ageDouble);
-        System.out.println(student);
-        System.out.println(name);
-        System.out.println(ageStatic);
 
+        System.out.println("Hello World ");
+
+        StringUtility s = new StringUtility();
+        String st="Hello abcdddeefff";
+        System.out.println(s.reverse(st));
+        System.out.println(s.checkPalindrome(st));
+        System.out.println(s.countVowels(st));
+        System.out.println(s.countVowels(st));
+        System.out.println(s.removeSpacesEnd(st));
+        System.out.println(s.removeSpaces(st));
+        System.out.println(s.compressCharacters(st));
 
     }
 
