@@ -1,0 +1,26 @@
+# Compiled Java files
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# Logs
+*.log
