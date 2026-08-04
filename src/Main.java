@@ -1,3 +1,7 @@
+import Ecommerce.Customer;
+import Ecommerce.Order;
+import Ecommerce.Product;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -5,6 +9,8 @@ public class Main {
         System.out.println("Hello World ");
 //        stringUtilityCall();
         objectCall();
+        productCall();
+
 
     }
 
@@ -29,6 +35,20 @@ public class Main {
         System.out.println(s.removeSpacesEnd(st));
         System.out.println(s.removeSpaces(st));
         System.out.println(s.compressCharacters(st));
+    }
+
+    public static void productCall(){
+        Product p1 = new Product(101, "Laptop", 70000, 5);
+        Product p2 = new Product(102, "Mouse", 500, 20);
+
+        Customer c1 = new Customer(1, "Likhita", "likhita@example.com");
+
+        Order order = new Order(1001, p1, c1, 2);
+
+        p1.display();
+        p2.display();
+        c1.display();
+        order.display();
     }
 
 
