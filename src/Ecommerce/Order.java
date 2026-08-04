@@ -1,23 +1,71 @@
 
 package Ecommerce;
-
 public class Order {
-    int orderId;
-    Product product;
-    Customer customer;
-    int quantity;
 
-    public Order(int var1, Product var2, Customer var3, int var4) {
-        this.orderId = var1;
-        this.product = var2;
-        this.customer = var3;
-        this.quantity = var4;
+    private final int orderId;
+    private final Product product;
+    private final Customer customer;
+    private int quantity;
+
+    public Order(int orderId, Product product, Customer customer, int quantity) {
+
+        if (orderId <= 0) {
+            throw new IllegalArgumentException("Order ID must be positive.");
+        }
+
+        if (product == null) {
+            throw new IllegalArgumentException("Product cannot be null.");
+        }
+
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer cannot be null.");
+        }
+
+        this.orderId = orderId;
+        this.product = product;
+        this.customer = customer;
+        setQuantity(quantity);
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than zero.");
+        }
+
+        this.quantity = quantity;
+    }
+
+    public double getTotalPrice() {
+        return product.getPrice() * quantity;
     }
 
     public void display() {
-        System.out.println("Order ID: " + this.orderId);
-        System.out.println("Customer: " + this.customer.name);
-        System.out.println("Product: " + this.product.name);
-        System.out.println("Quantity: " + this.quantity);
+
+        System.out.println("Order ID : " + orderId);
+        System.out.println("Customer : " + customer.getName());
+        System.out.println("Product  : " + product.getName());
+        System.out.println("Quantity : " + quantity);
+        System.out.println("Total    : ₹" + getTotalPrice());
+        System.out.println("------------------");
+
+
     }
+
 }

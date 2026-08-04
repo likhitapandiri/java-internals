@@ -1,15 +1,32 @@
 import Ecommerce.Customer;
 import Ecommerce.Order;
+import Ecommerce.Payment;
 import Ecommerce.Product;
 
 public class Main {
 
     public static void main(String[] args) {
+        Product laptop = new Product(101,"Laptop",70000,5);
+        laptop.setPrice(-1000);
+        laptop.setPrice(50000);
+        System.out.println(laptop.getPrice());
 
-        System.out.println("Hello World ");
-//        stringUtilityCall();
-        objectCall();
-        productCall();
+        Customer customer = new Customer(1,"Likhita","likhita@gmail.com");
+        Payment payment = new Payment(
+                1001,
+                70000,
+                "UPI"
+        );
+
+        Order order = new Order(
+                1001,
+                laptop,customer,2
+        );
+
+        payment.printReceipt();
+        laptop.display();
+        customer.display();
+        order.display();
 
 
     }
@@ -37,19 +54,6 @@ public class Main {
         System.out.println(s.compressCharacters(st));
     }
 
-    public static void productCall(){
-        Product p1 = new Product(101, "Laptop", 70000, 5);
-        Product p2 = new Product(102, "Mouse", 500, 20);
-
-        Customer c1 = new Customer(1, "Likhita", "likhita@example.com");
-
-        Order order = new Order(1001, p1, c1, 2);
-
-        p1.display();
-        p2.display();
-        c1.display();
-        order.display();
-    }
 
 
 }
