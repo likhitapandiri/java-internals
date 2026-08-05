@@ -1,5 +1,9 @@
 
-package Ecommerce;
+package Ecommerce.Order;
+
+import Ecommerce.Customer.Customer;
+import Ecommerce.Product.Product;
+
 public class Order {
 
     private final int orderId;

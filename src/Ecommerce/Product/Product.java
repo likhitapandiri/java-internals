@@ -1,5 +1,5 @@
 
-package Ecommerce;
+package Ecommerce.Product;
 
 public class Product {
     private int id;

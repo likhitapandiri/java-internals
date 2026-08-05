@@ -1,5 +1,4 @@
-
-package Ecommerce;
+package Ecommerce.Customer;
 
 public class Customer {
 

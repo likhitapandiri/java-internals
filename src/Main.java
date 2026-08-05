@@ -1,7 +1,10 @@
-import Ecommerce.Customer;
-import Ecommerce.Order;
-import Ecommerce.Payment;
-import Ecommerce.Product;
+import Ecommerce.Customer.Customer;
+import Ecommerce.Order.Order;
+import Ecommerce.Payments.CardPayment;
+import Ecommerce.Payments.Payment;
+import Ecommerce.Payments.UPIPayment;
+import Ecommerce.Payments.WalletPayment;
+import Ecommerce.Product.Product;
 
 public class Main {
 
@@ -14,8 +17,7 @@ public class Main {
         Customer customer = new Customer(1,"Likhita","likhita@gmail.com");
         Payment payment = new Payment(
                 1001,
-                70000,
-                "UPI"
+                70000
         );
 
         Order order = new Order(
@@ -23,10 +25,37 @@ public class Main {
                 laptop,customer,2
         );
 
-        payment.printReceipt();
+        payment.processPayment();
         laptop.display();
         customer.display();
         order.display();
+
+        CardPayment card = new CardPayment(
+                101,
+                2500,
+                "1234-5678-9012",
+                "HDFC"
+        );
+
+        UPIPayment upi = new UPIPayment(
+                102,
+                1500,
+                "likhita@upi"
+        );
+
+        WalletPayment wallet = new WalletPayment(
+                103,
+                800,
+                "Paytm"
+        );
+
+        card.processPayment();
+        System.out.println();
+
+        upi.processPayment();
+        System.out.println();
+
+        wallet.processPayment();
 
 
     }
