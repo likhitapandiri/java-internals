@@ -6,7 +6,7 @@ import Ecommerce.Product.Product;
 public class Main {
 
     public static void main(String[] args) {
-
+     polymorphism();
     }
 
     public static void objectCall(){
@@ -39,17 +39,12 @@ public class Main {
         System.out.println(laptop.getPrice());
 
         Customer customer = new Customer(1,"Likhita","likhita@gmail.com");
-        Payment payment = new Payment(
-                1001,
-                70000
-        );
 
         Order order = new Order(
                 1001,
                 laptop,customer,2
         );
 
-        payment.processPayment();
         laptop.display();
         customer.display();
         order.display();
@@ -91,17 +86,17 @@ public class Main {
         try{
 
             Payment card = PaymentFactory.getPaymentType("CARD");
+            card.makePayment();
+
             Payment upi = PaymentFactory.getPaymentType("UPI");
+            upi.makePayment();
+
             Payment wallet = PaymentFactory.getPaymentType("WALLET");
-        Payment randomPayment = PaymentFactory.getPaymentType("RANDOM");
+            wallet.makePayment();
 
-            card.processPayment();
-            System.out.println();
+            Payment randomPayment = PaymentFactory.getPaymentType("RANDOM");
+            randomPayment.makePayment();
 
-            upi.processPayment();
-            System.out.println();
-
-            wallet.processPayment();
         }catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
