@@ -1,9 +1,6 @@
 import Ecommerce.Customer.Customer;
 import Ecommerce.Order.Order;
-import Ecommerce.Payments.CardPayment;
-import Ecommerce.Payments.Payment;
-import Ecommerce.Payments.UPIPayment;
-import Ecommerce.Payments.WalletPayment;
+import Ecommerce.Payments.*;
 import Ecommerce.Product.Product;
 
 public class Main {
@@ -30,24 +27,11 @@ public class Main {
         customer.display();
         order.display();
 
-        CardPayment card = new CardPayment(
-                101,
-                2500,
-                "1234-5678-9012",
-                "HDFC"
-        );
 
-        UPIPayment upi = new UPIPayment(
-                102,
-                1500,
-                "likhita@upi"
-        );
-
-        WalletPayment wallet = new WalletPayment(
-                103,
-                800,
-                "Paytm"
-        );
+        Payment card = PaymentFactory.getPaymentType("CARD");
+        Payment upi = PaymentFactory.getPaymentType("UPI");
+        Payment wallet = PaymentFactory.getPaymentType("WALLET");
+//        Payment randomPayment = PaymentFactory.getPaymentType("RANDOM");
 
         card.processPayment();
         System.out.println();
@@ -56,7 +40,6 @@ public class Main {
         System.out.println();
 
         wallet.processPayment();
-
 
     }
 
