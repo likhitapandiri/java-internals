@@ -1,4 +1,4 @@
-package Ecommerce.Payments;
+package Ecommerce.Payments.Inheritance;
 public abstract class Payment {
 
     private final int paymentId;

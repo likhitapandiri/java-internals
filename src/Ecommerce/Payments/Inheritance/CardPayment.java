@@ -1,6 +1,6 @@
-package Ecommerce.Payments;
+package Ecommerce.Payments.Inheritance;
 
-public class CardPayment extends Payment{
+public class CardPayment extends Payment {
     private String cardNumber;
     private String bankNumber;
 

@@ -1,12 +1,15 @@
 import Ecommerce.Customer.Customer;
 import Ecommerce.Order.Order;
-import Ecommerce.Payments.*;
+import Ecommerce.Payments.Inheritance.*;
+import Ecommerce.Payments.Interfaces.CardPaymentImpl;
+import Ecommerce.Payments.Interfaces.PaymentGateway;
+import Ecommerce.Payments.Interfaces.UpiPaymentImpl;
 import Ecommerce.Product.Product;
 
 public class Main {
 
     public static void main(String[] args) {
-     polymorphism();
+        interfaces();
     }
 
     public static void objectCall(){
@@ -100,6 +103,14 @@ public class Main {
         }catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void interfaces(){
+        PaymentGateway card = new CardPaymentImpl();
+        PaymentGateway upi = new UpiPaymentImpl();
+
+        card.processPaymnet();
+        upi.processPaymnet();
     }
 
 
