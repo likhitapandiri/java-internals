@@ -1,9 +1,7 @@
 import Ecommerce.Customer.Customer;
 import Ecommerce.Order.Order;
 import Ecommerce.Payments.Inheritance.*;
-import Ecommerce.Payments.Interfaces.CardPaymentImpl;
-import Ecommerce.Payments.Interfaces.PaymentGateway;
-import Ecommerce.Payments.Interfaces.UpiPaymentImpl;
+import Ecommerce.Payments.Interfaces.*;
 import Ecommerce.Product.Product;
 
 public class Main {
@@ -108,9 +106,27 @@ public class Main {
     public static void interfaces(){
         PaymentGateway card = new CardPaymentImpl();
         PaymentGateway upi = new UpiPaymentImpl();
+        //this is polymorphism - ref type is PaymentGateway and actual obj is CardPayment or UpiPayment
 
         card.processPaymnet();
         upi.processPaymnet();
+
+        CardPaymentImpl cardImpl = new CardPaymentImpl();
+        PaymentGateway paymentGateway = cardImpl;
+        Refundable refundable = cardImpl;
+        Trackable trackable = cardImpl;
+
+        //an interface cannot be instantiated directly, just like an abstract class cannot be instantiated directly.
+        //We are not creating a PaymentGateway,refundable,trackable  object here.
+        //obj is already created - now create different references to that same object
+
+        paymentGateway.processPaymnet();
+
+        refundable.refund();
+
+        trackable.track();
+
+
     }
 
 
