@@ -26,16 +26,18 @@ public class FileSystem {
     }
 
     public void bufferReader(){
-        try {
-            Reader reader = new FileReader("FileSystem/input.txt");
-            BufferedReader br = new BufferedReader(reader);
+            try (Reader reader = new FileReader("FileSystem/input.txt");
+            BufferedReader br = new BufferedReader(reader)){
 
             String line;
             while((line = br.readLine()) != null){
                 System.out.println(line);
             }
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-        }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+            //try block finishes, Java automatically closes file with try with resources
+
     }
 }
