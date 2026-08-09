@@ -147,7 +147,7 @@ public class Main {
 
     public static void fileSys(){
          FileSystem fileSystem = new FileSystem();
-         fileSystem.bufferReader();
+         fileSystem.bufferWriter();
     }
 
 
