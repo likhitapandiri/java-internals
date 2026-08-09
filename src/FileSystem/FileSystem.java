@@ -122,6 +122,27 @@ public class FileSystem {
     //For actual text:\Hello , नमस्त , తెలుగు
     //use Reader
     //Streams (InputStream/OutputStream) handle raw binary data byte-by-byte (8-bit), while Readers and Writers handle textual data character-by-character (16-bit Unicode)
+
+    public void bufferStream() {
+        try (
+                InputStream input =
+                        new BufferedInputStream(
+                                new FileInputStream("image-input.png")
+                        );
+
+                OutputStream outputStream =
+                        new BufferedOutputStream(
+                                new FileOutputStream("image-output.png")
+                        )
+        ){
+            int data;
+            while ((data = input.read()) != -1) {
+                outputStream.write(data);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
 
 
