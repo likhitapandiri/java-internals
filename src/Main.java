@@ -1,3 +1,4 @@
+import Ecommerce.BankAccount;
 import Ecommerce.Customer.Customer;
 import Ecommerce.Order.Order;
 import Ecommerce.Payments.Inheritance.*;
@@ -7,7 +8,7 @@ import Ecommerce.Product.Product;
 public class Main {
 
     public static void main(String[] args) {
-        interfaces();
+        exceptionHandling();
     }
 
     public static void objectCall(){
@@ -129,6 +130,19 @@ public class Main {
 
     }
 
+    public static void exceptionHandling(){
+        try {
+            BankAccount b = new BankAccount("abg112", 100);
+            b.deposit(100);
+            b.withdraw(50);
+            b.deposit(0);
+            b.withdraw(200); //unhandled exception handled here
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 
 }
