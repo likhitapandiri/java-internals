@@ -4,11 +4,12 @@ import Ecommerce.Order.Order;
 import Ecommerce.Payments.Inheritance.*;
 import Ecommerce.Payments.Interfaces.*;
 import Ecommerce.Product.Product;
+import FileSystem.FileSystem;
 
 public class Main {
 
     public static void main(String[] args) {
-        exceptionHandling();
+        fileSys();
     }
 
     public static void objectCall(){
@@ -142,6 +143,11 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void fileSys(){
+         FileSystem fileSystem = new FileSystem();
+         fileSystem.fileReader();
     }
 
 
