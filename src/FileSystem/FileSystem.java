@@ -97,6 +97,31 @@ public class FileSystem {
         //That's the entire point of buffering.
 
     }
+
+    public void outputStreamer(){
+        try {
+            OutputStream outputStream = new FileOutputStream("FileSystem/output.txt");
+            outputStream.write(65);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void inputStreamer(){
+        try {
+            InputStream inputStream = new FileInputStream("FileSystem/input.txt");
+            int data;
+            while((data = inputStream.read() )!=-1){
+                System.out.println((char) data);
+            }
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //For actual text:\Hello , नमस्त , తెలుగు
+    //use Reader
+    //Streams (InputStream/OutputStream) handle raw binary data byte-by-byte (8-bit), while Readers and Writers handle textual data character-by-character (16-bit Unicode)
 }
 
 

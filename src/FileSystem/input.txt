@@ -2,3 +2,4 @@ Java
 Springboot
 Backend
 Developer
+తెలుగు
