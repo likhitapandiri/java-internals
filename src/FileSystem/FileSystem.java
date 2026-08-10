@@ -1,6 +1,10 @@
 package FileSystem;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 
 public class FileSystem {
     public void fileReader() {
@@ -142,6 +146,38 @@ public class FileSystem {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void fileChanelBuffer(){
+        try (FileChannel channel = FileChannel.open(Path.of("FileSystem/input.txt"))) {
+
+            ByteBuffer buffer = ByteBuffer.allocate(1024); //Read data from channel into buffer (Write mode)
+            while(channel.read(buffer)!=-1){
+              buffer.flip(); // Switch buffer from write mode to read mode
+               while(buffer.hasRemaining()){
+                   System.out.println((char) buffer.get());  // buffer.get() gets one byte at a time.
+               }
+                buffer.clear();
+            }
+
+            channel.position(0);
+
+            while(channel.read(buffer) !=-1){
+                buffer.flip();
+                System.out.println(StandardCharsets.UTF_8.decode(buffer));
+                buffer.clear();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        //FileChannel position
+        //        ↓
+        //Where am I in the WHOLE FILE? , itself maintains a file position.
+        //
+        //ByteBuffer position
+        //        ↓
+        //Where am I in the CURRENT BUFFER?
     }
 }
 
