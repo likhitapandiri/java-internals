@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 //linked list also as interface list is same all methods will be same behaviour will be same but internal impl will differ
-public class ArrayListImpl {
+public class ArrayImpl {
 
     private List<String> products = new ArrayList<>();
 

@@ -1,4 +1,5 @@
-import Collections.ArrayListImpl;
+import Collections.ArrayImpl;
+import Collections.SetImpl;
 import Ecommerce.BankAccount;
 import Ecommerce.Customer.Customer;
 import Ecommerce.Order.Order;
@@ -10,7 +11,7 @@ import FileSystem.FileSystem;
 public class Main {
 
     public static void main(String[] args) {
-        arrayListImpl();
+        setImpl();
     }
 
     public static void objectCall(){
@@ -152,7 +153,7 @@ public class Main {
     }
 
     public static void arrayListImpl(){
-        ArrayListImpl arrayList = new ArrayListImpl();
+        ArrayImpl arrayList = new ArrayImpl();
         arrayList.addProduct("Laptop");
         System.out.println(arrayList.getAllProducts());
         arrayList.addProduct("Mobile");
@@ -166,5 +167,25 @@ public class Main {
         System.out.println(arrayList.search("Mobile"));
     }
 
+    public static void setImpl(){
+        SetImpl set = new SetImpl();
+        Product p =  new Product(101,"Laptop",70000,5);
+        set.addProduct( new Product(101,"Laptop",70000,5));
+        set.addProduct( new Product(101,"Laptop",70000,5)); // this creates new obj adn new ref so added to set
+        set.getAllProducts();
+        System.out.println("------------------");
+
+        set.addProduct(p);
+        set.getAllProducts();
+        System.out.println("------------------");
+
+        set.addProduct(p); //set stores the ref of Product obj so here already p exists so dont add new obj in set
+        set.getAllProducts();
+        System.out.println("------------------");
+
+        set.search( new Product(101,"Laptop",70000,5));
+        set.removeProduct( new Product(101,"Laptop",70000,5));
+        set.getAllProducts();
+    }
 
 }
