@@ -1,3 +1,4 @@
+import Collections.ArrayListImpl;
 import Ecommerce.BankAccount;
 import Ecommerce.Customer.Customer;
 import Ecommerce.Order.Order;
@@ -9,7 +10,7 @@ import FileSystem.FileSystem;
 public class Main {
 
     public static void main(String[] args) {
-        fileSys();
+        arrayListImpl();
     }
 
     public static void objectCall(){
@@ -148,6 +149,21 @@ public class Main {
     public static void fileSys(){
          FileSystem fileSystem = new FileSystem();
          fileSystem.fileChanelBuffer();
+    }
+
+    public static void arrayListImpl(){
+        ArrayListImpl arrayList = new ArrayListImpl();
+        arrayList.addProduct("Laptop");
+        System.out.println(arrayList.getAllProducts());
+        arrayList.addProduct("Mobile");
+        System.out.println(arrayList.getAllProducts());
+        arrayList.editProduct("Laptop1",0);
+        System.out.println(arrayList.getAllProducts());
+        System.out.println(arrayList.getProductByIndex(1));
+        arrayList.insertAtIndex("Ipad",3);
+        arrayList.removeProduct(1);
+        System.out.println(arrayList.getAllProducts());
+        System.out.println(arrayList.search("Mobile"));
     }
 
 
