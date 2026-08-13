@@ -1,4 +1,5 @@
 import Collections.ArrayImpl;
+import Collections.MapImpl;
 import Collections.SetImpl;
 import Ecommerce.BankAccount;
 import Ecommerce.Customer.Customer;
@@ -11,7 +12,7 @@ import FileSystem.FileSystem;
 public class Main {
 
     public static void main(String[] args) {
-        setImpl();
+        mapImpl();
     }
 
     public static void objectCall(){
@@ -186,6 +187,22 @@ public class Main {
         set.search( new Product(101,"Laptop",70000,5));
         set.removeProduct( new Product(101,"Laptop",70000,5));
         set.getAllProducts();
+    }
+
+
+    public static void mapImpl() {
+        MapImpl map= new MapImpl();
+        Product p =  new Product(101,"Laptop",70000,5);
+        map.addProduct( 102L,new Product(101,"Laptop",70000,5));
+        map.addProduct( 103L,new Product(103,"Laptop",70000,5)); // this creates new obj adn new ref so added to set
+        map.addProduct(101L,p);
+        map.getAllProducts();
+        map.getProduct(101L);
+        map.searchValue(p);
+        map.searchKey(102L);
+        map.getAllProducts();
+        map.removeProduct(103L);
+        map.getAllProducts();
     }
 
 }
