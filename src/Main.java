@@ -8,11 +8,16 @@ import Ecommerce.Payments.Inheritance.*;
 import Ecommerce.Payments.Interfaces.*;
 import Ecommerce.Product.Product;
 import FileSystem.FileSystem;
+import Streams.CsvAnalytics;
+import Streams.Employee;
+
+import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
-        mapImpl();
+    public static void main(String[] args) throws IOException {
+        streams();
     }
 
     public static void objectCall(){
@@ -189,7 +194,6 @@ public class Main {
         set.getAllProducts();
     }
 
-
     public static void mapImpl() {
         MapImpl map= new MapImpl();
         Product p =  new Product(101,"Laptop",70000,5);
@@ -203,6 +207,65 @@ public class Main {
         map.getAllProducts();
         map.removeProduct(103L);
         map.getAllProducts();
+    }
+
+    public static void streams() throws IOException {
+
+        CsvAnalytics analytics =
+                new CsvAnalytics();
+
+        List<Employee> employees =
+                analytics.readCsv();
+
+        System.out.println("All employees:");
+        employees.forEach(
+                System.out::println
+        );
+
+        System.out.println("\nAge > 25:");
+
+        analytics
+                .filterByAge(employees, 25)
+                .forEach(System.out::println);
+
+
+        System.out.println("\nSorted by age:");
+
+        analytics
+                .sortByAge(employees)
+                .forEach(System.out::println);
+
+
+        System.out.println("\nGrouped by city:");
+
+        analytics
+                .groupByCity(employees)
+                .forEach(
+                        (city, employeeList) ->
+                                System.out.println(
+                                        city + " → "
+                                                + employeeList
+                                )
+                );
+
+        System.out.println("\nCount by city:");
+
+        analytics
+                .countByCity(employees)
+                .forEach(
+                        (city, count) ->
+                                System.out.println(
+                                        city + " → " + count
+                                )
+                );
+
+
+        System.out.println("\nEmployee names:");
+
+        analytics
+                .getEmployeeNames(employees)
+                .forEach(System.out::println);
+
     }
 
 }
