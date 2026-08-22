@@ -1,5 +1,5 @@
 
-package Ecommerce.Product;
+package OOPS_ecommerce.Product;
 
 public class Product {
     private int id;

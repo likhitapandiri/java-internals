@@ -1,13 +1,13 @@
 import Collections.ArrayImpl;
 import Collections.MapImpl;
 import Collections.SetImpl;
-import Ecommerce.BankAccount;
-import Ecommerce.Customer.Customer;
-import Ecommerce.Order.Order;
-import Ecommerce.Payments.Inheritance.*;
-import Ecommerce.Payments.Interfaces.*;
-import Ecommerce.Product.Product;
 import FileSystem.FileSystem;
+import OOPS_ecommerce.BankAccount;
+import OOPS_ecommerce.Customer.Customer;
+import OOPS_ecommerce.Order.Order;
+import OOPS_ecommerce.Payments.Inheritance.*;
+import OOPS_ecommerce.Payments.Interfaces.*;
+import OOPS_ecommerce.Product.Product;
 import Streams.CsvAnalytics;
 import Streams.Employee;
 
@@ -17,7 +17,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        streams();
     }
 
     public static void objectCall(){
@@ -267,5 +266,4 @@ public class Main {
                 .forEach(System.out::println);
 
     }
-
 }

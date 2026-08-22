@@ -1,6 +1,6 @@
 package Collections;
 
-import Ecommerce.Product.Product;
+import OOPS_ecommerce.Product.Product;
 
 import java.util.HashMap;
 import java.util.Map;

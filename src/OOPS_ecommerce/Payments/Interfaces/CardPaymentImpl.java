@@ -1,4 +1,4 @@
-package Ecommerce.Payments.Interfaces;
+package OOPS_ecommerce.Payments.Interfaces;
 
 public class CardPaymentImpl implements PaymentGateway,Refundable,Trackable {
    //CardPayment can implement all three interfaces

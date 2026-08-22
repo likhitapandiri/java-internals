@@ -1,4 +1,4 @@
-package Ecommerce.Customer;
+package OOPS_ecommerce.Customer;
 
 public class Customer {
 

@@ -1,4 +1,4 @@
-package Ecommerce.Payments.Interfaces;
+package OOPS_ecommerce.Payments.Interfaces;
 
 public class UpiPaymentImpl implements PaymentGateway {
     @Override

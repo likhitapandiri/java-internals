@@ -1,4 +1,4 @@
-package Ecommerce.Exception;
+package OOPS_ecommerce.Exception;
 
 public class BankAccountException extends RuntimeException{
     public BankAccountException(String message){

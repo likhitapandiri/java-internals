@@ -1,6 +1,6 @@
-package Ecommerce;
+package OOPS_ecommerce;
 
-import Ecommerce.Exception.BankAccountException;
+import OOPS_ecommerce.Exception.BankAccountException;
 
 public class BankAccount {
     private String accountNumner;

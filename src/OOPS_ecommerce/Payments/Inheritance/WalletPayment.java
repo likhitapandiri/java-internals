@@ -1,4 +1,4 @@
-package Ecommerce.Payments.Inheritance;
+package OOPS_ecommerce.Payments.Inheritance;
 
 public class WalletPayment extends Payment {
 

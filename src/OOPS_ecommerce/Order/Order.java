@@ -1,8 +1,8 @@
 
-package Ecommerce.Order;
+package OOPS_ecommerce.Order;
 
-import Ecommerce.Customer.Customer;
-import Ecommerce.Product.Product;
+import OOPS_ecommerce.Customer.Customer;
+import OOPS_ecommerce.Product.Product;
 
 public class Order {
 

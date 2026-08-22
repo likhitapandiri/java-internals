@@ -1,4 +1,4 @@
-package Ecommerce.Payments.Inheritance;
+package OOPS_ecommerce.Payments.Inheritance;
 
 public class CardPayment extends Payment {
     private String cardNumber;
