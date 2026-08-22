@@ -10,6 +10,7 @@ import OOPS_ecommerce.Payments.Interfaces.*;
 import OOPS_ecommerce.Product.Product;
 import Streams.CsvAnalytics;
 import Streams.Employee;
+import Threads.Threads;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        threadFundamentals();
     }
 
     public static void objectCall(){
@@ -265,5 +267,10 @@ public class Main {
                 .getEmployeeNames(employees)
                 .forEach(System.out::println);
 
+    }
+
+    public static void threadFundamentals() {
+        Threads threads = new Threads();
+        threads.threadFundamentals();
     }
 }
