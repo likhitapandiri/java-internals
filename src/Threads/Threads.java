@@ -156,4 +156,18 @@ Java Process
         }
     }
 
+    public synchronized void decrement() {
+        count--;
+    }
+
+    public void printCount() { //non-synchronized method
+        System.out.println(count);
+    }
+
+    //Both methods icrement,decrement use the same object lock beacuse they are instance synchronized method
+    //The lock is associated with c, not specifically with increment() or decrement().
+    //the lock exists as part of the object, but synchronized methods like incremnet,decrement only holds/acquires it during its execution
+    //The lock is associated with the object; a synchronized instance method temporarily acquires that object's lock while the method runs.
+    //another thread can enter printCount() while another thread is inside increment().
+    //That's why simply having one synchronized method doesn't automatically make the entire class thread-
 }
