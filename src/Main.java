@@ -289,8 +289,12 @@ public class Main {
 
     public static void threadPool() throws InterruptedException {
         ThreadManagement threadManagement=new ThreadManagement();
-        threadManagement.threadManagement();
+        //threadManagement.threadManagement();
+        threadManagement.nonDaemonThreads();
         System.out.println("main thread continuing " + Thread.currentThread().getName());
+        System.out.println("Main finished");
+
+
         //how come main thread know that excuor service is running ??like why doesn't main thread got terminated
         //The main thread doesn't need to "know" that the executor is running. The JVM knows about the threads created by the executor.
     }

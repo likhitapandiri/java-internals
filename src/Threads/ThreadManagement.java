@@ -43,4 +43,56 @@ public class ThreadManagement {
         executorService.shutdown();
 
     }
+
+    public void nonDaemonThreads(){
+            ExecutorService executor =
+                    Executors.newFixedThreadPool(4);
+
+            executor.submit(() -> {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+
+                System.out.println("Task finished");
+            });
+
+    }
+
+    //By default, the worker threads created by a normal ExecutorService thread pool are non-daemon threads.
+    //The JVM doesn't exit while non-daemon threads are still alive.
+
+    //                  JVM
+    //                   │
+    //        ┌──────────┴──────────┐
+    //        │                     │
+    //   Main Thread           ExecutorService
+    //                              │
+    //                       ┌──────┼──────┐
+    //                       ↓      ↓      ↓
+    //                      T1     T2     T3
+    //                       │      │      │
+    //                      Task   Task   Task
+    //
+    //
+    //main finishes
+    //      │
+    //      ↓
+    //Doesn't automatically kill workers
+    //      │
+    //      ↓
+    //shutdown()
+    //      │
+    //      ↓
+    //Workers finish existing tasks
+    //      │
+    //      ↓
+    //Workers terminate
+    //      │
+    //      ↓
+    //No non-daemon threads
+    //      │
+    //      ↓
+    //JVM exits
 }
