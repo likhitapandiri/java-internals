@@ -11,14 +11,14 @@ import OOPS_ecommerce.Product.Product;
 import Streams.CsvAnalytics;
 import Streams.Employee;
 import Threads.Threads;
-
+import Threads.ThreadManagement;
 import java.io.IOException;
 import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        threadFundamentals();
+    public static void main(String[] args) throws IOException, InterruptedException {
+        threadPool();
 
     }
 
@@ -287,5 +287,11 @@ public class Main {
 
     }
 
-
+    public static void threadPool() throws InterruptedException {
+        ThreadManagement threadManagement=new ThreadManagement();
+        threadManagement.threadManagement();
+        System.out.println("main thread continuing " + Thread.currentThread().getName());
+        //how come main thread know that excuor service is running ??like why doesn't main thread got terminated
+        //The main thread doesn't need to "know" that the executor is running. The JVM knows about the threads created by the executor.
+    }
 }
