@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Threads {
     private int count=0;
+
+    private static  int staticCount=0;
     public void threadFundamentals(){
         System.out.println("main thread");
 
@@ -215,4 +217,13 @@ Java Process
     //With:synchronized (lock)
     //you're saying:"I want to define exactly which lock protects this piece of state."
     //That gives you more control.
+
+
+    static synchronized void staticIncrement() {
+        staticCount++;
+    }
+    //This is a static synchronized method.
+    //It doesn't lock:this . because static methods don't belong to a particular object.
+    //Instead, it locks the Class object.
+
 }

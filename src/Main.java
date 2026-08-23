@@ -271,14 +271,15 @@ public class Main {
     }
 
     public static void threadFundamentals() {
+        System.out.println(Threads.class);
         Threads threads1 = new Threads();
 //        threads.threadFundamentals();
 
 //          threads.threadStatus();
 //       threads.multiThreadRaceCondition();
-        threads1.multiThreadObjects();
-        Threads threads2 = new Threads();
-        threads2.multiThreadObjects();
+//        threads1.multiThreadObjects();
+//        Threads threads2 = new Threads();
+//        threads2.multiThreadObjects();
 
         //T1 locks counter1.T2 locks counter2.They don't block each other.
 
