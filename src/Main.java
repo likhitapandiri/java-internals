@@ -14,10 +14,11 @@ import Threads.Threads;
 import Threads.ThreadManagement;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
         threadPool();
 
     }
@@ -287,12 +288,12 @@ public class Main {
 
     }
 
-    public static void threadPool() throws InterruptedException {
+    public static void threadPool() throws InterruptedException, ExecutionException {
         ThreadManagement threadManagement=new ThreadManagement();
-        //threadManagement.threadManagement();
-        threadManagement.nonDaemonThreads();
-        System.out.println("main thread continuing " + Thread.currentThread().getName());
-        System.out.println("Main finished");
+        threadManagement.threadManagement();
+//        threadManagement.nonDaemonThreads();
+//        System.out.println("main thread continuing " + Thread.currentThread().getName());
+//        System.out.println("Main finished");
 
 
         //how come main thread know that excuor service is running ??like why doesn't main thread got terminated

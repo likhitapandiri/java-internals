@@ -1,10 +1,13 @@
 package Threads;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class ThreadManagement {
-    public void threadManagement(){
+
+    public void threadManagement() throws ExecutionException, InterruptedException {
             ExecutorService executorService = Executors.newFixedThreadPool(4);
             //Suppose Task 1 finishes first.
            //Remember:The thread does NOT die.That's the whole point of a thread pool.
@@ -20,7 +23,7 @@ public class ThreadManagement {
 
                 int taskNumber = i;
 
-                executorService.submit(() -> {
+                Future<Integer> future= executorService.submit(() -> {
 //                    System.out.println("Task " + taskNumber);
                     try {
                         if(taskNumber % 2 == 0){
@@ -37,10 +40,13 @@ public class ThreadManagement {
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
+                    return taskNumber;
                 });
+
+                System.out.println(future.get());
             }//the task is handed to the executor.If a worker is available, it can take the task.If all workers are busy, the task waits in the queue.
 
-        executorService.shutdown();
+        executorService.shutdown(); //Don't accept new tasks, but finish already submitted tasks.
 
     }
 
