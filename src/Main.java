@@ -19,7 +19,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         threadFundamentals();
-        System.out.println("Main: " + Thread.currentThread().getState());
 
     }
 
@@ -275,7 +274,8 @@ public class Main {
         Threads threads = new Threads();
 //        threads.threadFundamentals();
 
-          threads.threadStatus();
+//          threads.threadStatus();
+        threads.multiThreadRaceCondition();
     }
 
 

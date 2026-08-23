@@ -1,6 +1,7 @@
 package Threads;
 
 public class Threads {
+    private int count=0;
     public void threadFundamentals(){
         System.out.println("main thread");
 
@@ -97,5 +98,35 @@ Java Process
         }
     }
 
+    public void multiThreadRaceCondition(){
+        try {
+            System.out.println(count);
+
+            Thread thread1 = new Thread(() -> {
+                for (int i = 0; i < 100000; i++) {
+                    count++;
+                }
+            });
+
+            Thread thread2 = new Thread(() -> {
+                for (int i = 0; i < 100000; i++) {
+                    count++;
+                }
+            });
+
+            thread1.start();
+            thread2.start();
+
+            thread1.join();
+            thread2.join();
+
+            System.out.println(count); //The exact number isn't predictable.That's the race.
+        }
+         catch (InterruptedException e) {
+            // Restore interrupted status
+            Thread.currentThread().interrupt();
+            System.err.println("The sleep interval was interrupted.");
+        }
+    }
 
 }
