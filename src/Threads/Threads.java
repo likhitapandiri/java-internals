@@ -104,13 +104,13 @@ Java Process
 
             Thread thread1 = new Thread(() -> {
                 for (int i = 0; i < 100000; i++) {
-                    count++;
+                    increment();
                 }
             });
 
             Thread thread2 = new Thread(() -> {
                 for (int i = 0; i < 100000; i++) {
-                    count++;
+                    increment();
                 }
             });
 
@@ -129,4 +129,7 @@ Java Process
         }
     }
 
+    public synchronized void increment(){
+        count++;
+    }
 }
