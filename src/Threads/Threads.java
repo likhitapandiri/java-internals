@@ -21,4 +21,81 @@ public class Threads {
 
         System.out.println("After");
     }
+
+    public void creatingThread(){
+        CreateThread thread = new CreateThread();
+        System.out.println(thread.getState());
+        thread.start();
+        System.out.println(thread.getState());
+
+        SendEmailTask sendEmailTask=new SendEmailTask();
+        sendEmailTask.run(); //this runs on main thread
+
+        Thread worker = new Thread(sendEmailTask);
+        worker.start(); //does task.run which is on worker thread
+/*
+Java Process
+│
+├── Main Thread
+│      │
+│      ├── creates SendEmailTask
+│      │
+│      ├── creates Thread object
+│      │
+│      └── calls worker.start()
+│
+└── Worker Thread
+       │
+       └── executes task.run()
+
+*/
+
+        //Runnable = "what should be done?"
+        //Thread  =  "who executes that work?"
+
+        //sendEmailTask is the work executed by worker
+
+
+    }
+
+    public void threadStatus() {
+        try {
+            Thread thread = new Thread(() -> {
+                System.out.println("Worker: " + Thread.currentThread().getState());
+
+                System.out.println("thread executing");
+                try {
+                    Thread.sleep(5000); // Pauses the current thread for exactly 5 seconds
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+
+                System.out.println("Worker: " + Thread.currentThread().getState());
+
+            });
+
+            System.out.println("Main: " + Thread.currentThread().getState());
+
+            System.out.println("Worker: "+thread.getState());
+            System.out.println("Worker: "+thread.isAlive());
+            thread.start();
+
+            System.out.println("Before join");
+            thread.join(); //without this main thread does not wait for the worker.
+            //approximately 5 seconds pass
+            System.out.println("After join");
+
+
+            System.out.println("Worker: "+thread.getState());
+            System.out.println("Worker: "+thread.isAlive());
+
+        } catch (InterruptedException e) {
+            // Restore interrupted status
+            Thread.currentThread().interrupt();
+            System.err.println("The sleep interval was interrupted.");
+        }
+    }
+
+
 }

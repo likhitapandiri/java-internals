@@ -10,9 +10,7 @@ import OOPS_ecommerce.Payments.Interfaces.*;
 import OOPS_ecommerce.Product.Product;
 import Streams.CsvAnalytics;
 import Streams.Employee;
-import Threads.CreateThread;
 import Threads.Threads;
-import Threads.SendEmailTask;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +18,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        creatingThread();
+        threadFundamentals();
+        System.out.println("Main: " + Thread.currentThread().getState());
+
     }
 
     public static void objectCall(){
@@ -273,16 +273,10 @@ public class Main {
 
     public static void threadFundamentals() {
         Threads threads = new Threads();
-        threads.threadFundamentals();
+//        threads.threadFundamentals();
+
+          threads.threadStatus();
     }
 
-    public static void creatingThread(){
-        CreateThread thread = new CreateThread();
-        thread.start();
-
-        SendEmailTask sendEmailTask=new SendEmailTask();
-        sendEmailTask.run();
-
-    }
 
 }
