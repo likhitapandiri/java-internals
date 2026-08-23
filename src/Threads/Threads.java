@@ -129,7 +129,31 @@ Java Process
         }
     }
 
-    public synchronized void increment(){
-        count++;
+    public synchronized void increment(){ //control access to shared resources.
+        count++; //conceptually, it is three steps:READ → MODIFY → WRITE
+    } //A critical section is the portion of code that accesses shared mutable state and must not be executed concurrently by conflicting threads.
+
+    public void multiThreadObjects(){
+        // lock is associated with the object.here race condition will not occur
+        try {
+            System.out.println(count);
+
+            Thread thread1 = new Thread(() -> {
+                for (int i = 0; i < 100000; i++) {
+                    count++;
+                }
+            });
+
+            thread1.start();
+            thread1.join();
+
+            System.out.println(count); //The exact number isn't predictable.That's the race.
+        }
+        catch (InterruptedException e) {
+            // Restore interrupted status
+            Thread.currentThread().interrupt();
+            System.err.println("The sleep interval was interrupted.");
+        }
     }
+
 }
