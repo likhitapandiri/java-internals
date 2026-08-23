@@ -1,5 +1,7 @@
 package Threads;
 
+import java.util.List;
+
 public class Threads {
     private int count=0;
     public void threadFundamentals(){
@@ -170,4 +172,47 @@ Java Process
     //The lock is associated with the object; a synchronized instance method temporarily acquires that object's lock while the method runs.
     //another thread can enter printCount() while another thread is inside increment().
     //That's why simply having one synchronized method doesn't automatically make the entire class thread-
+
+    //above increment and decrement are synchronized methods
+    //above increment to simlar to
+    // void increment() {
+    //        synchronized (this) { //Lock the current Counter object.
+    //            count++;
+    //        }
+    //    }
+
+    //But imagine your class has multiple independent pieces of shared data.
+
+
+    private List<String> accounts;
+    private List<String> transactions;
+    //Maybe you want: accounts → Lock A , transactions → Lock B as they are 2 independent operations
+    //
+    //rather than:
+    // Class
+    //  ↓
+    //one giant lock
+
+    private final Object accountLock = new Object();
+    private final Object transactionLock = new Object();
+    //private: Outside code can't access your lock
+    //final : The reference can't be changed
+
+    void addAccount(String account) {
+        synchronized (accountLock) {
+            accounts.add(account);
+        }
+    }
+
+    void addTransaction(String transaction) {
+        synchronized (transactionLock) {
+            transactions.add(transaction); //Now different operations can happen concurrently.
+        }
+    }
+
+    //With:synchronized (this)
+    //you're saying:"Use the object's lock."
+    //With:synchronized (lock)
+    //you're saying:"I want to define exactly which lock protects this piece of state."
+    //That gives you more control.
 }
