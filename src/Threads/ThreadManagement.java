@@ -127,6 +127,7 @@ public class ThreadManagement {
         //use result
 
         for(int i=1;i<10;i++){
+
             Integer taskNumber =i;
             CompletableFuture<Integer> task = CompletableFuture.supplyAsync( //supplyAsync is used when task returns something
                     ()-> {
@@ -135,17 +136,34 @@ public class ThreadManagement {
             executorService
             );
 
-            CompletableFuture<Void> runasync = CompletableFuture.runAsync(
-                    ()->{
-                        System.out.println("Hello");
-                    },executorService
-            );
+            //dependent tasks
+            //With future:
+            //submit
+            // ↓
+            //get
+            // ↓
+            //wait
+            // ↓
+            //get result
+            // ↓
+            //transform
+            //With completableFuture
+            //When the first task finishes, take its result and apply this operation.
 
             task.thenAccept(result -> {
                 System.out.println("Result = " + result);
             });
+
+            CompletableFuture<Integer> doubledTask =
+                    task.thenApply(value -> value * 2);
+
+
+            doubledTask.thenAccept(result -> {
+                System.out.println("Doubled = " + result);
+            });
         }
 
+        //CompletableFuture allows dependent asynchronous operations to be chained without blocking the calling thread. However, methods such as get() and join() can still block.
 
     }
 }
