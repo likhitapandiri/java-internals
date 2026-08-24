@@ -1,5 +1,7 @@
 package Threads;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,10 +9,13 @@ import java.util.concurrent.Future;
 
 public class ThreadManagement {
 
-    public void threadManagement() throws ExecutionException, InterruptedException {
-            ExecutorService executorService = Executors.newFixedThreadPool(4);
-            //Suppose Task 1 finishes first.
-           //Remember:The thread does NOT die.That's the whole point of a thread pool.
+    private final ExecutorService executorService =
+            Executors.newFixedThreadPool(4);
+
+    public void threadManagement(int x) throws ExecutionException, InterruptedException {
+        System.out.println("threadManagement : " + x);
+        //Suppose Task 1 finishes first.
+        //Remember:The thread does NOT die.That's the whole point of a thread pool.
         //T1 finishes Task 1
         //        ↓
         //T1 asks:
@@ -19,7 +24,10 @@ public class ThreadManagement {
         //Queue has Task 5
         //        ↓
         //T1 takes Task 5
-            for (int i = 1; i <= 10; i++) {
+
+        List<Future<Integer>> futures = new ArrayList<>();
+
+        for (int i = x; i <= 10+x; i++) {
 
                 int taskNumber = i;
 
@@ -43,11 +51,17 @@ public class ThreadManagement {
                     return taskNumber;
                 });
 
-                System.out.println(future.get());
+                futures.add(future);
+
+                //System.out.println(future.get()); //waits util task1 finsihes //not really filling your pool with 10 tasks at once.so comment it out here
+                System.out.println("thread out"); //checking whether only thread obj is waiting or this entire code after executorService.submit is waiting
             }//the task is handed to the executor.If a worker is available, it can take the task.If all workers are busy, the task waits in the queue.
 
-        executorService.shutdown(); //Don't accept new tasks, but finish already submitted tasks.
+       // executorService.shutdown(); //Don't accept new tasks, but finish already submitted tasks.
 
+//        for (Future<Integer> future : futures) {
+//            System.out.println(future.get());
+//        }
     }
 
     public void nonDaemonThreads(){
