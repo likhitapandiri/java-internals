@@ -290,8 +290,9 @@ public class Main {
 
     public static void threadPool() throws InterruptedException, ExecutionException {
         ThreadManagement threadManagement=new ThreadManagement();
-        threadManagement.threadManagement(1);
-        threadManagement.threadManagement(11);
+//        threadManagement.threadManagement(1);
+//        threadManagement.threadManagement(11);
+        threadManagement.completableFuture();
 
 //        threadManagement.nonDaemonThreads();
 //        System.out.println("main thread continuing " + Thread.currentThread().getName());

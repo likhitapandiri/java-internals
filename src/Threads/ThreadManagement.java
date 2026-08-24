@@ -2,15 +2,12 @@ package Threads;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class ThreadManagement {
 
     private final ExecutorService executorService =
-            Executors.newFixedThreadPool(4);
+            Executors.newFixedThreadPool(5);
 
     public void threadManagement(int x) throws ExecutionException, InterruptedException {
         System.out.println("threadManagement : " + x);
@@ -115,4 +112,40 @@ public class ThreadManagement {
     //      │
     //      ↓
     //JVM exits
+
+
+    public void completableFuture(){
+
+        //supplyAsync()
+        //     ↓
+        //task executes
+        //     ↓
+        //returns Integer
+        //     ↓
+        //thenAccept()
+        //     ↓
+        //use result
+
+        for(int i=1;i<10;i++){
+            Integer taskNumber =i;
+            CompletableFuture<Integer> task = CompletableFuture.supplyAsync( //supplyAsync is used when task returns something
+                    ()-> {
+                        return taskNumber;
+                        },
+            executorService
+            );
+
+            CompletableFuture<Void> runasync = CompletableFuture.runAsync(
+                    ()->{
+                        System.out.println("Hello");
+                    },executorService
+            );
+
+            task.thenAccept(result -> {
+                System.out.println("Result = " + result);
+            });
+        }
+
+
+    }
 }
