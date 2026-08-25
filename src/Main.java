@@ -10,6 +10,7 @@ import OOPS_ecommerce.Payments.Interfaces.*;
 import OOPS_ecommerce.Product.Product;
 import Streams.CsvAnalytics;
 import Streams.Employee;
+import Threads.FileUploadProcessor.FileUploadProcessor;
 import Threads.Threads;
 import Threads.ThreadManagement;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
-        threadPool();
+        fileProcessor();
 
     }
 
@@ -301,5 +302,16 @@ public class Main {
 
         //how come main thread know that excuor service is running ??like why doesn't main thread got terminated
         //The main thread doesn't need to "know" that the executor is running. The JVM knows about the threads created by the executor.
+    }
+
+    public static void fileProcessor(){
+        FileUploadProcessor fileUploadProcessor=new FileUploadProcessor();
+        fileUploadProcessor.submitFile("file1.csv");
+        fileUploadProcessor.submitFile("file2.csv");
+        fileUploadProcessor.submitFile("file3.csv");
+        fileUploadProcessor.submitFile("file4.csv");
+        fileUploadProcessor.submitFile("file5.csv");
+        fileUploadProcessor.submitFile("file6.csv");
+        fileUploadProcessor.submitFile("file7.csv");
     }
 }
