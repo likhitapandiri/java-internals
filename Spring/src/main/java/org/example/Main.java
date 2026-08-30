@@ -18,12 +18,5 @@ public class Main {
 
         userController.getUser();
 
-        UserService service1 =
-                context.getBean(UserService.class);
-
-        UserService service2 =
-                context.getBean(UserService.class);
-
-        System.out.println(service1 == service2);
     }
 }
