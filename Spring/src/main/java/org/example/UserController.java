@@ -1,5 +1,4 @@
-package main.java.org.example;
-
+package org.example;
 public class UserController {
 
     private final UserService userService;
@@ -9,6 +8,7 @@ public class UserController {
     }
 
     public void getUser() {
+
         System.out.println("Inside UserController");
 
         userService.getUser();

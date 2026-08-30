@@ -1,31 +1,29 @@
+package org.example;
 
-package main.java.org.example;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import main.java.org.example.UserController;
-import main.java.org.example.UserRepository;
-import main.java.org.example.UserService;
-
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-
     public static void main(String[] args) {
 
-        UserRepository userRepository =
-                new UserRepository();
-
-        UserService userService =
-                new UserService(userRepository);
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext(
+                        AppConfig.class
+                );  //You are essentially saying:Spring, create an ApplicationContext using this configuration.
 
         UserController userController =
-                new UserController(userService);
+                context.getBean(UserController.class);
 
         userController.getUser();
-    }
 
-    //You
-    //│
-    //├── created UserRepository
-    //│
-    //├── injected it into UserService
-    //│
-    //└── injected UserService into UserController
+        UserService service1 =
+                context.getBean(UserService.class);
+
+        UserService service2 =
+                context.getBean(UserService.class);
+
+        System.out.println(service1 == service2);
+    }
 }

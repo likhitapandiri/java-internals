@@ -1,8 +1,8 @@
-package main.java.org.example;
+package org.example;
 
 public class UserRepository {
 
-    public void getUser(){
-        System.out.println("User Repo");
+    public void getUser() {
+        System.out.println("Getting user from repository");
     }
 }
