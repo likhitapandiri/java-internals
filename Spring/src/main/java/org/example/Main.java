@@ -21,8 +21,8 @@ public class Main {
         context1.scan("org.example");
         System.out.println("Application is running");
 
-        Publisher publisher = context1.getBean(Publisher.class);
-        publisher.publisher();
+        AppInfoService appInfoService=context1.getBean(AppInfoService.class);
+        appInfoService.printAppInfo();
 
         context1.close();
 
