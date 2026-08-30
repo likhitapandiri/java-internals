@@ -13,10 +13,10 @@ public class Main {
                         AppConfig.class
                 );  //You are essentially saying:Spring, create an ApplicationContext using this configuration.
 
-        UserController userController =
-                context.getBean(UserController.class);
+        PaymentService paymentService = context.getBean(PaymentService.class);
+        paymentService.pay();
 
-        userController.getUser();
-
+        PaymentService paymentService1 = context.getBean("paypalPayment",PaymentService.class);
+        paymentService1.pay();
     }
 }
