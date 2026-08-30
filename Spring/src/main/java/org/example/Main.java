@@ -20,10 +20,10 @@ public class Main {
         context1.getEnvironment().setActiveProfiles("prod");
         context1.scan("org.example");
         System.out.println("Application is running");
-        PaymentService paymentService =
-                context1.getBean(PaymentService.class);
 
-        paymentService.pay();
+        Publisher publisher = context1.getBean(Publisher.class);
+        publisher.publisher();
+
         context1.close();
 
     }
